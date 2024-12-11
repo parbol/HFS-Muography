@@ -5,7 +5,7 @@
 ###################################################################################                                    
 import sys, optparse
 import pandas as pd
-import matplotlib as plt
+import matplotlib.pyplot as plt
 from tools.POCAEstimator import POCAEstimator
 
 
@@ -22,23 +22,38 @@ if __name__=='__main__':
         print('Cannot open input file')
         sys.exit()
 
+  
     #Data structure for selection and plotting
     binInfo = dict()
-    binInfo['threahold1'] = 0
-    binInfo['threahold2'] = 0
+    binInfo['threshold1'] = 0.1
+    binInfo['threshold2'] = 0.1
     binInfo['xynbinx'] = 160
     binInfo['xynbiny'] = 160
-    binInfo['xznbinx'] = 40
-    binInfo['xznbinz'] = 20
-    binInfo['yznbiny'] = 40
-    binInfo['yznbinz'] = 20
+    binInfo['xznbinx'] = 160
+    binInfo['xznbinz'] = 160
+    binInfo['yznbiny'] = 160
+    binInfo['yznbinz'] = 160
+    binInfo['limitX'] = [-30, 30]
+    binInfo['limitY'] = [-30, 30]
+    binInfo['limitZ'] = [-5, 5]
+
  
-    fig, ax = plt.subplots(3)
+    fig, ax = plt.subplots(2, 3, figsize=(16, 10))
+    ax[0][0].set_title('Frontal view XY')
+    ax[0][1].set_title('Side view XZ')
+    ax[0][2].set_title('Side view YZ')
+    ax[0][0].set_xlabel('X [cm]')
+    ax[0][0].set_ylabel('Y [cm]')
+    ax[0][1].set_xlabel('X [cm]')
+    ax[0][1].set_ylabel('Z [cm]')
+    ax[0][2].set_xlabel('Y [cm]')
+    ax[0][2].set_ylabel('Z [cm]')
+
 
     pEstimator = POCAEstimator(dataset, binInfo, ax)
     pEstimator.loop()
     
-    plt.save(opts.output)
+    plt.savefig(opts.outputFile)
     
 
 
