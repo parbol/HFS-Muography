@@ -25,8 +25,8 @@ if __name__=='__main__':
   
     #Data structure for selection and plotting
     binInfo = dict()
-    binInfo['threshold1'] = 0.1
-    binInfo['threshold2'] = 0.1
+    binInfo['threshold1'] = 0.
+    binInfo['threshold2'] = 0.
     binInfo['xynbinx'] = 160
     binInfo['xynbiny'] = 160
     binInfo['xznbinx'] = 160
